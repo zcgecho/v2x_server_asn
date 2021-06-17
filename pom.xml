@@ -5,20 +5,10 @@
 	<groupId>com.caeri.v2x</groupId>
 	<artifactId>v2x_server_asn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
-	
 	<properties>
 		
 	</properties>
-
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.directory.studio</groupId>
-			<artifactId>org.apache.commons.codec</artifactId>
-			<version>1.8</version>
-		</dependency>
-
-
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-ext-jdk15on</artifactId>
@@ -38,12 +28,26 @@
 	<build>
 		<finalName>v2x_server_asn</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-jar-plugin</artifactId>
-		        <version>3.2.0</version>
-			</plugin>
-
+			<plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-shade-plugin</artifactId>  
+                <version>2.4.3</version>  
+                <executions>  
+                    <execution>  
+                        <phase>package</phase>  
+                        <goals>  
+                            <goal>shade</goal>  
+                        </goals>  
+                        <configuration>  
+                            <transformers>  
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">  
+<!--                                     <mainClass>v2x_udp_server.ASNTest</mainClass>   -->
+                                </transformer>  
+                            </transformers>  
+                        </configuration>  
+                    </execution>  
+                </executions>  
+            </plugin>  
 		</plugins>
 	</build>
 </project>
